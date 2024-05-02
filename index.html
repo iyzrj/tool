@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真实利率计算器 - 免费在线工具 | {$site_name}</title>
+    <meta name="keywords" content="真实利率计算器, 真实利率, 利率计算工具, 贷款利率计算器, 房贷利率计算, 车贷利率计算, 个人贷款利率, 贷款利率计算方法, 最佳利率计算器, 在线利率计算器" />
+    <link href="//cdn.staticfile.net/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+        }
+
+        .result-label {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?33671073a1901c64a6436e5639956271";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+<div class="container">
+    <h1 class="mb-4">贷款真实利率计算器</h1>
+    <ul class="nav nav-tabs" id="typeTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly" aria-selected="true">按月计息</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="daily-tab" data-bs-toggle="tab" data-bs-target="#daily" type="button" role="tab" aria-controls="daily" aria-selected="false">按天计息</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="typeTabContent">
+        <div class="tab-pane fade show active" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
+            <form id="monthlyForm">
+                <div class="mb-3">
+                    <label for="monthlyLoanAmount" class="form-label">借款总金额（元）</label>
+                    <input type="number" class="form-control" id="monthlyLoanAmount" required>
+                </div>
+                <div class="mb-3">
+                    <label for="monthlyMonthlyPayment" class="form-label">每月还款额（元）</label>
+                    <input type="number" class="form-control" id="monthlyMonthlyPayment" required>
+                </div>
+                <div class="mb-3">
+                    <label for="monthlyLoanPeriod" class="form-label">借款周期（月）</label>
+                    <input type="number" class="form-control" id="monthlyLoanPeriod" required>
+                </div>
+                <button type="submit" class="btn btn-primary">计算</button>
+            </form>
+            <div id="monthlyResult" class="mt-4"></div>
+        </div>
+        <div class="tab-pane fade" id="daily" role="tabpanel" aria-labelledby="daily-tab">
+            <form id="dailyForm">
+                <div class="mb-3">
+                    <label for="dailyDailyInterestRate" class="form-label">每日利率（%）</label>
+                    <input type="float" min="0" class="form-control" id="dailyDailyInterestRate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">计算</button>
+            </form>
+            <div id="dailyResult" class="mt-4"></div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="alert alert-success">
+            <strong>你应该认真阅读：</strong>
+            <div>一般贷款时销售会告诉你的是一个<strong><span class="text-red">显得很低</span>的贷款利率（名义年利率）</strong>，而IRR(内部收益率)则会告诉你实际你付出的真实利率。</div>
+            <div>
+                <div>假设你在考虑申请一笔贷款来购买一辆汽车。银行可能会给你提供几种不同的还款计划，每种计划都有不同的利率和还款期限。这时候，IRR就是一种帮助你比较这些还款计划的指标。</div>
+
+                <div>想象一下，如果你有一张纸，上面列出了每个月你需要还款的金额。IRR就是一个数字，它告诉你，如果所有的还款计划都如期执行，你的贷款会以多少的年利利率来还款。</div>
+
+                <div>换句话说，IRR告诉你，这笔贷款的利率是多少，让你的所有还款计划都得到满足，即使你的还款金额会随着时间的推移而变化。所以，当你比较不同的贷款方案时，你可以用IRR来帮助你决定哪一个贷款方案对你更有利。</div>
+
+                <div>简而言之，IRR就像是一个标尺，帮助你衡量不同还款计划的相对优劣，让你更容易做出财务决策。</div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2024 Copyright:
+            <a class="text-reset fw-bold" href="https://niyaoxuehao.cn">槽痞</a>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Bootstrap JavaScript Bundle with Popper -->
+
+</body>
+<script src="//cdn.staticfile.net/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 切换类型
+    const monthlyTab = document.getElementById('monthly-tab');
+    const dailyTab = document.getElementById('daily-tab');
+    const monthlyForm = document.getElementById('monthly');
+    const dailyForm = document.getElementById('daily');
+
+    monthlyTab.addEventListener('click', function() {
+        monthlyTab.classList.add('active');
+        dailyTab.classList.remove('active');
+        monthlyForm.classList.add('show', 'active');
+        dailyForm.classList.remove('show', 'active');
+    });
+
+    dailyTab.addEventListener('click', function() {
+        monthlyTab.classList.remove('active');
+        dailyTab.classList.add('active');
+        monthlyForm.classList.remove('show', 'active');
+        dailyForm.classList.add('show', 'active');
+    });
+
+    // 计算按月利率
+    document.getElementById('monthlyForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const loanAmount = parseFloat(document.getElementById('monthlyLoanAmount').value);
+        const monthlyPayment = parseFloat(document.getElementById('monthlyMonthlyPayment').value);
+        const loanPeriod = parseInt(document.getElementById('monthlyLoanPeriod').value);
+
+        const cashflows = [-loanAmount];
+        for (let i = 0; i < loanPeriod; i++) {
+            cashflows.push(monthlyPayment);
+        }
+
+        const irr = calculateIRR(cashflows);
+        const annualInterestRate = Math.pow(1 + irr, 12) - 1;
+
+        const nominalInterestRate = (monthlyPayment * loanPeriod - loanAmount) / (loanPeriod * loanAmount) * 12;
+
+        document.getElementById('monthlyResult').innerHTML = `
+        <div class="result-item">
+          <span class="result-label">名义年利率：</span>
+          <span>${(nominalInterestRate * 100).toFixed(2)}%</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">真实年利率：</span>
+          <span>${(annualInterestRate * 100).toFixed(2)}%</span>
+        </div>
+      `;
+    });
+
+    // 计算按天利率
+    document.getElementById('dailyForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const dailyInterestRate = parseFloat(document.getElementById('dailyDailyInterestRate').value) / 100;
+
+        const annualInterestRate = dailyInterestRate * 365;
+
+        document.getElementById('dailyResult').innerHTML = `
+        <div class="result-item">
+          <span class="result-label">真实年利率：</span>
+          <span>${(annualInterestRate * 100).toFixed(2)}%</span>
+        </div>
+      `;
+    });
+
+    // Function to calculate IRR using Newton-Raphson method
+    function calculateIRR(cashflows) {
+        let irr = 0.1; // Initial guess
+        const maxIterations = 100;
+        const tolerance = 0.00001;
+
+        for (let i = 0; i < maxIterations; i++) {
+            const npv = calculateNPV(cashflows, irr);
+            const dNPV = calculateDNPV(cashflows, irr);
+            const newIRR = irr - npv / dNPV;
+
+            if (Math.abs(newIRR - irr) < tolerance) {
+                return newIRR;
+            }
+
+            irr = newIRR;
+        }
+
+        return NaN; // Failed to converge
+    }
+
+    // Function to calculate Net Present Value (NPV) of cashflows at a given rate
+    function calculateNPV(cashflows, rate) {
+        let npv = 0;
+        for (let t = 0; t < cashflows.length; t++) {
+            npv += cashflows[t] / Math.pow(1 + rate, t);
+        }
+        return npv;
+    }
+
+    // Function to calculate derivative of NPV with respect to rate
+    function calculateDNPV(cashflows, rate) {
+        let dNPV = 0;
+        for (let t = 0; t < cashflows.length; t++) {
+            dNPV -= t * cashflows[t] / Math.pow(1 + rate, t + 1);
+        }
+        return dNPV;
+    }
+</script>
+</html>
